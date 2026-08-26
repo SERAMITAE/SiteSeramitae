@@ -180,14 +180,14 @@ img { max-width: 100%; display: block; }
    5. Header & Navigation
    ========================================= */
 .header {
-    background-color: rgba(5, 5, 5, 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(5, 5, 5, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     position: sticky;
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid var(--border-subtle);
-    padding: 1.2rem 0;
+    padding: 0.85rem 0;
     transition: var(--transition-base);
 }
 
@@ -200,12 +200,22 @@ img { max-width: 100%; display: block; }
 .logo {
     display: inline-flex;
     align-items: center;
+    gap: 0.85rem;
 }
 
 .logo img {
-    width: 58px;
-    height: 58px;
+    width: 52px;
+    height: 52px;
     object-fit: contain;
+}
+
+.brand-name {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--text-primary);
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    line-height: 1;
 }
 
 .nav-list {
@@ -216,7 +226,9 @@ img { max-width: 100%; display: block; }
 
 .nav-link {
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--text-secondary);
     position: relative;
     padding: 0.5rem 0;
@@ -360,6 +372,15 @@ img { max-width: 100%; display: block; }
     align-items: center;
 }
 
+.about-team-photo {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.75);
+}
+
 .about-text p {
     margin-bottom: 1.5rem;
     color: var(--text-secondary);
@@ -430,12 +451,70 @@ img { max-width: 100%; display: block; }
 /* =========================================
    9. Sponsors & CTA
    ========================================= */
-.sponsors-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 2rem;
+.sponsors-marquee {
+    width: 100%;
+    overflow: hidden;
+    padding: 1.25rem 0;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.sponsors-track,
+.sponsor-set {
+    display: flex;
     align-items: center;
-    justify-items: center;
+    gap: 4.5rem;
+}
+
+.sponsors-track {
+    width: max-content;
+    will-change: transform;
+    animation: sponsor-scroll 16s linear infinite;
+}
+
+.sponsors-marquee:hover .sponsors-track {
+    animation-play-state: paused;
+}
+
+.sponsor-card {
+    flex: 0 0 250px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 12px 28px -20px rgba(0, 0, 0, 0.9);
+}
+
+.sponsor-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.28));
+}
+
+@keyframes sponsor-scroll {
+    to { transform: translateX(calc(-50% - 2.25rem)); }
+}
+
+@media (max-width: 768px) {
+    .sponsors-track,
+    .sponsor-set { gap: 3rem; }
+
+    .sponsor-card {
+        flex-basis: 200px;
+        height: 120px;
+    }
+
+    @keyframes sponsor-scroll {
+        to { transform: translateX(calc(-50% - 1.5rem)); }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sponsors-track { animation: none; }
 }
 
 .cta-section {
@@ -632,9 +711,12 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 768px) {
     .logo img {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
     }
+
+    .logo { gap: 0.65rem; }
+    .brand-name { font-size: 0.95rem; }
 
     .mobile-menu-btn { display: flex; }
     
