@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robotics Team | Contact</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logos/teamlogo.png" alt="Seramitae Robotics logo">
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="robots.html" class="nav-link">Robots</a></li>
+                    <li><a href="contact.html" class="nav-link active nav-cta">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="page-title">Get In Touch</h1>
+                <p class="page-subtitle">Have questions? Want to sponsor us or join the team? Reach out below.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-wrapper fade-in">
+                    <h2 class="section-title">Send us a Message</h2>
+                    <div class="title-underline"></div>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="john@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject">
+                                <option value="general">General Inquiry</option>
+                                <option value="sponsorship">Sponsorship</option>
+                                <option value="joining">Joining the Team</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info fade-in">
+                    <div class="info-card">
+                        <h3>Our Location</h3>
+                        <div class="placeholder-box placeholder-image" style="height: 200px; margin-top: 1rem;">Map Placeholder</div>
+                        <p style="margin-top: 1rem;">123 Innovation Drive<br>Tech City, TC 90210</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Contact Details</h3>
+                        <p><strong>Email:</strong> info@roboticsteam.com</p>
+                        <p><strong>Phone:</strong> (555) 123-4567</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Follow Us</h3>
+                        <div class="social-links" style="margin-top: 0.5rem;">
+                            <a href="#" class="social-link">YouTube</a>
+                            <a href="#" class="social-link">Instagram</a>
+                            <a href="#" class="social-link">GitHub</a>
+                            <a href="#" class="social-link">LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Robotics Team. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>
