@@ -8,10 +8,10 @@
     --bg-card: #111111;
     --bg-tertiary: #161616;
     
-    /* Accent & Glows */
+    /* Purple Accent & Glows (Armonizat) */
     --accent: #6f026c;
     --accent-hover: #9f009c;
-    --accent-glow: rgba(255, 107, 0, 0.15);
+    --accent-glow: rgba(111, 2, 108, 0.25); /* Corectat din portocaliu în mov */
     
     /* Typography & Text */
     --font-main: 'Inter', system-ui, -apple-system, sans-serif;
@@ -21,7 +21,7 @@
     
     /* Borders & UI */
     --border-subtle: rgba(255, 255, 255, 0.08);
-    --border-hover: rgba(255, 0, 234, 0.4);
+    --border-hover: rgba(159, 0, 156, 0.5); /* Armonizat cu tema mov */
     
     /* Premium Easing (Apple-like smooth deceleration) */
     --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
@@ -203,7 +203,7 @@ img { max-width: 100%; display: block; }
     gap: 0.85rem;
 }
 
-.logo img {
+.logo img, .site-logo {
     width: 52px;
     height: 52px;
     object-fit: contain;
@@ -289,7 +289,8 @@ img { max-width: 100%; display: block; }
    ========================================= */
 .hero {
     padding: clamp(5rem, 10vw, 8rem) 0;
-    background: radial-gradient(circle at 80% 20%, rgba(255, 107, 0, 0.06) 0%, transparent 40%),
+    /* Gradient armonizat cu tema mov */
+    background: radial-gradient(circle at 80% 20%, rgba(111, 2, 108, 0.08) 0%, transparent 40%),
                 radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
 }
 
@@ -372,9 +373,9 @@ img { max-width: 100%; display: block; }
     align-items: center;
 }
 
-.about-team-photo {
+.about-team-photo, .about-img {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    height: 400px;
     object-fit: cover;
     border-radius: 16px;
     border: 1px solid var(--border-subtle);
@@ -500,20 +501,15 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 768px) {
-    .sponsors-track,
-    .sponsor-set { gap: 3rem; }
-
-    .sponsor-card {
-        flex-basis: 200px;
-        height: 120px;
-    }
-
+    .sponsors-track, .sponsor-set { gap: 3rem; }
+    .sponsor-card { flex-basis: 200px; height: 120px; }
 }
 
 .cta-section {
     padding: clamp(4rem, 8vw, 6rem) 0;
     text-align: center;
-    background: radial-gradient(circle at center, rgba(255, 107, 0, 0.05) 0%, transparent 60%);
+    /* Gradient armonizat cu tema mov */
+    background: radial-gradient(circle at center, rgba(111, 2, 108, 0.08) 0%, transparent 60%);
     border-top: 1px solid var(--border-subtle);
 }
 
@@ -666,18 +662,49 @@ img { max-width: 100%; display: block; }
 }
 
 /* =========================================
-   12. Ultra-Smooth Animations (The Magic)
+   12. Real Media & Avatar Styling (CRUCIAL)
+   ========================================= */
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.avatar-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1.5rem auto;
+    border: 2px solid var(--border-subtle);
+    transition: var(--transition-base);
+}
+
+.avatar-img:hover {
+    border-color: var(--accent);
+    transform: scale(1.05);
+}
+
+.robot-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 16px 16px 0 0;
+    transition: var(--transition-base);
+}
+
+.card:hover .robot-img {
+    transform: scale(1.03);
+}
+
+/* =========================================
+   13. Ultra-Smooth Animations (The Magic)
    ========================================= */
 .fade-in {
     opacity: 0;
-    /* Adding a subtle scale creates a 3D depth effect */
     transform: translateY(40px) scale(0.98);
-    
-    /* 1.2s duration with custom ease-out-expo curve for a long, smooth tail */
     transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), 
                 transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-    
-    /* Hint to the browser to use GPU acceleration for buttery performance */
     will-change: opacity, transform; 
 }
 
@@ -687,30 +714,26 @@ img { max-width: 100%; display: block; }
 }
 
 /* =========================================
-   13. Responsive Design
+   14. Responsive Design
    ========================================= */
 @media (max-width: 992px) {
     .hero-container, .about-grid, .contact-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
-    
     .hero { text-align: center; }
     .hero-subtitle { margin-left: auto; margin-right: auto; }
     .hero-buttons { justify-content: center; }
-    
     .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 768px) {
-    .logo img {
+    .logo img, .site-logo {
         width: 44px;
         height: 44px;
     }
-
     .logo { gap: 0.65rem; }
     .brand-name { font-size: 0.95rem; }
-
     .mobile-menu-btn { display: flex; }
     
     .nav-list {
