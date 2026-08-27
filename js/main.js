@@ -4,6 +4,41 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // ==========================================
+    // 0. Smooth wheel scrolling
+    // ==========================================
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion) {
+        let targetScrollY = window.scrollY;
+        let animationFrame;
+
+        const animateScroll = () => {
+            const currentScrollY = window.scrollY;
+            const difference = targetScrollY - currentScrollY;
+
+            if (Math.abs(difference) < 0.5) {
+                window.scrollTo(0, targetScrollY);
+                animationFrame = undefined;
+                return;
+            }
+
+            window.scrollTo(0, currentScrollY + difference * 0.14);
+            animationFrame = requestAnimationFrame(animateScroll);
+        };
+
+        window.addEventListener('wheel', (event) => {
+            const target = event.target instanceof Element ? event.target : null;
+            if (event.ctrlKey || target?.closest('input, textarea, select, [contenteditable="true"]')) return;
+
+            event.preventDefault();
+            const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
+            if (!animationFrame) targetScrollY = window.scrollY;
+            targetScrollY = Math.max(0, Math.min(maxScrollY, targetScrollY + event.deltaY * 0.9));
+
+            if (!animationFrame) animationFrame = requestAnimationFrame(animateScroll);
+        }, { passive: false });
+    }
     
     // ==========================================
     // 1. Mobile Menu Toggle
