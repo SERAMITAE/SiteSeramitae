@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Robotics Team | Contact</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@600;700;800&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -85,10 +84,10 @@
                     <div class="info-card">
                         <h3>Follow Us</h3>
                         <div class="social-links" style="margin-top: 0.5rem;">
-                            <a href="#" class="social-link">YouTube</a>
-                            <a href="#" class="social-link">Instagram</a>
-                            <a href="#" class="social-link">GitHub</a>
-                            <a href="#" class="social-link">LinkedIn</a>
+                            <a href="https://www.youtube.com/@Seramitae-official" class="social-link">YouTube</a>
+                            <a href="https://www.instagram.com/clr_seramitae/" class="social-link">Instagram</a>
+                            <a href="https://github.com/SERAMITAE" class="social-link">GitHub</a>
+                            <a href="https://www.tiktok.com/@seramitae" class="social-link">TikTok</a>
                         </div>
                     </div>
                 </div>
@@ -101,6 +100,42 @@
             <p>&copy; 2026 Robotics Team. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Form Handling Script -->
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            // 1. Prevent the default form submission (which would just reload the page)
+            event.preventDefault();
+
+            // 2. Get values from the form inputs
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subjectType = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            // 3. Define your pre-established email address here
+            const targetEmail = "mattteopastrasc2@gmail.com"; // <-- CHANGE THIS TO YOUR EMAIL
+
+            // 4. Construct the subject (Full Name as requested) and email body
+            const emailSubject = encodeURIComponent(name);
+            const emailBody = encodeURIComponent(
+                `From: ${name}\n` +
+                `Reply-To: ${email}\n` +
+                `Inquiry Type: ${subjectType}\n\n` +
+                `Message:\n${message}`
+            );
+
+            // 5. Create the Gmail compose URL
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${targetEmail}&su=${emailSubject}&body=${emailBody}`;
+
+            // 6. Open Gmail in a new tab
+            window.open(gmailUrl, '_blank');
+
+            // Optional: Clear the form after opening the email client
+            // this.reset();
+        });
+    </script>
+
     <script src="js/main.js"></script>
 </body>
 </html>
