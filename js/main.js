@@ -1,12 +1,9 @@
 /**
- * Main JavaScript File for Robotics Team Website
- * Handles mobile navigation, ultra-smooth scroll animations, and form interactions.
+ * Enhanced JavaScript - Smoother, more natural interactions
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ==========================================
-    // 0. Smooth wheel scrolling
-    // ==========================================
+    // Smooth wheel scrolling with better feel
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (!prefersReducedMotion) {
@@ -23,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            window.scrollTo(0, currentScrollY + difference * 0.14);
+            window.scrollTo(0, currentScrollY + difference * 0.12);
             animationFrame = requestAnimationFrame(animateScroll);
         };
 
@@ -34,15 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
             if (!animationFrame) targetScrollY = window.scrollY;
-            targetScrollY = Math.max(0, Math.min(maxScrollY, targetScrollY + event.deltaY * 0.9));
+            targetScrollY = Math.max(0, Math.min(maxScrollY, targetScrollY + event.deltaY * 0.8));
 
             if (!animationFrame) animationFrame = requestAnimationFrame(animateScroll);
         }, { passive: false });
     }
     
-    // ==========================================
-    // 1. Mobile Menu Toggle
-    // ==========================================
+    // Mobile Menu Toggle with better animations
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navList = document.querySelector('.nav-list');
 
@@ -50,16 +45,17 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenuBtn.addEventListener('click', () => {
             navList.classList.toggle('active');
             
-            // Smooth hamburger to X animation
             const spans = mobileMenuBtn.querySelectorAll('span');
             if (navList.classList.contains('active')) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
                 spans[1].style.opacity = '0';
                 spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+                document.body.style.overflow = 'hidden';
             } else {
                 spans[0].style.transform = 'none';
                 spans[1].style.opacity = '1';
                 spans[2].style.transform = 'none';
+                document.body.style.overflow = '';
             }
         });
 
@@ -71,20 +67,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 spans[0].style.transform = 'none';
                 spans[1].style.opacity = '1';
                 spans[2].style.transform = 'none';
+                document.body.style.overflow = '';
             });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navList.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                navList.classList.remove('active');
+                const spans = mobileMenuBtn.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                document.body.style.overflow = '';
+            }
         });
     }
 
-    // ==========================================
-    // 2. Ultra-Smooth Scroll Fade-in Animation
-    // Uses Intersection Observer with hardware-accelerated CSS delays for zero-stutter staggering
-    // ==========================================
+    // Ultra-smooth scroll fade-in animation
     const fadeElements = document.querySelectorAll('.fade-in');
 
     const fadeObserverOptions = {
         root: null,
-        // Trigger slightly before the element is fully in view for a seamless feel
-        rootMargin: '0px 0px -60px 0px', 
+        rootMargin: '0px 0px -50px 0px', 
         threshold: 0.05
     };
 
@@ -92,33 +97,21 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 const target = entry.target;
-                
-                // Find the element's index within its parent grid/container to create a stagger effect
                 const parent = target.parentElement;
                 const siblings = Array.from(parent.children).filter(child => child.classList.contains('fade-in'));
                 const index = siblings.indexOf(target);
                 
-                // Apply a smooth CSS transition delay (much smoother than JS setTimeout)
-                // 120ms stagger per item, capped at 500ms so it doesn't wait too long for large grids
-                const delay = Math.min(index * 120, 500); 
+                const delay = Math.min(index * 100, 400); 
                 target.style.transitionDelay = `${delay}ms`;
-                
-                // Trigger the animation
                 target.classList.add('visible');
-                
-                // Stop observing once animated to save memory
                 observer.unobserve(target);
             }
         });
     }, fadeObserverOptions);
 
-    fadeElements.forEach(el => {
-        fadeObserver.observe(el);
-    });
+    fadeElements.forEach(el => fadeObserver.observe(el));
 
-    // ==========================================
-    // 3. Contact Form Handling (Demo)
-    // ==========================================
+    // Contact Form Handling
     const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
