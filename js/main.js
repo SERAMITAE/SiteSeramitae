@@ -56,7 +56,25 @@ document.addEventListener('DOMContentLoaded', () => {
         'Send Message': 'Trimite mesajul',
         'Our Location': 'Locația noastră',
         'Map Placeholder': 'Hartă',
-        'Contact Details': 'Date de contact'
+        'Contact Details': 'Date de contact',
+        
+        // --- NEW TRANSLATIONS FOR ABOUT US PAGE ---
+        'Current Team Members': 'Membrii actuali ai echipei',
+        'Mechanics Leader, Team Leader, Drive Team': 'Lider Mecanică, Lider de Echipă, Drive Team',
+        'Mechanics, Drive Team': 'Mecanică, Drive Team',
+        'Mechanics': 'Mecanică',
+        'Programming Leader, Drive Team': 'Lider Programare, Drive Team',
+        'Programming': 'Programare',
+        '"Life\'s more fun when you don\'t know what to do with it"': '"Viața e mai distractivă când nu știi ce să faci cu ea"',
+        'Programming, PR': 'Programare, PR',
+        'PR Leader': 'Lider PR',
+        'PR': 'PR',
+        '"It’s not about being the best in the team, it’s about being the best for the team"': '"Nu contează să fii cel mai bun din echipă, contează să fii cel mai bun pentru echipă"',
+        'Alumni, Mentors & Connections': 'Alumni, Mentori și Conexiuni',
+        'Mentor': 'Mentor',
+        'Connection': 'Conexiune',
+        'Alumni': 'Alumni',
+        '© Seramitae - FTC Team 23486': '© Seramitae - Echipa FTC 23486'
     };
 
     const setLanguage = (language) => {
